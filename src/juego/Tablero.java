@@ -21,7 +21,7 @@ public class Tablero {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 int x = j * anchoCasilla + anchoCasilla / 2; // centro de la casilla
-                int y = i * altoCasilla + altoCasilla / 2;
+                int y = i * altoCasilla + altoCasilla / 2 +200;
 
                 // alternar colores para ver la grilla
                 Color color = ((i + j) % 2 == 0) ? Color.LIGHT_GRAY : Color.DARK_GRAY;
