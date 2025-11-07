@@ -24,4 +24,6 @@ public class Nuez {
         }
     public double getX() { return x; }
     public double getY() { return y; }
+    public double getAlto() { return alto;}
+    public double getAncho() { return ancho; }
 }

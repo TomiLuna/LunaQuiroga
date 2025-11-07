@@ -14,9 +14,9 @@ public class Juego extends InterfaceJuego
 	private Regalo[] regalos;
 	private Bala bala;
 	private Zombie zombie;
-	private DemoColision colision;
 	private Planta1 planta1;
 	private Nuez nuez;
+	private DemoColision colision;
 	// Variables y métodos propios de cada grupo
 	// ...
 	
@@ -30,7 +30,6 @@ public class Juego extends InterfaceJuego
 		this.casilla = new Casilla(400,400,80,80);
 		this.tablero = new Tablero(5,10, 80,80);
 		this.bala = new Bala(50, 500, 40 ,40,true);
-		this.colision = new DemoColision();
 		this.regalos = new Regalo [5];
 		this.planta1 = new Planta1(120, 320, 50, 50);
 		this.nuez = new Nuez(200, 320, 50, 50);
@@ -41,6 +40,7 @@ public class Juego extends InterfaceJuego
 			int y = i * anchocasilla + anchocasilla / 2 +200; // alto de casilla * i más el centro
 			this.regalos[i] = new Regalo(x, y, 40, 40);
 		}
+		this.colision = new DemoColision();
 		//this.bala = new Bala(x, y, 40, 40);
 		this.zombie = new Zombie (850, 500, 40 ,40);
 		// Inicializar lo que haga falta para el juego
@@ -75,6 +75,8 @@ public class Juego extends InterfaceJuego
 			this.zombie.dibujar(entorno);
 		}
 	
+		
+
 	this.zombie.mover();
 	this.bala.dibujar(entorno);
 	this.bala.mover();
@@ -82,11 +84,11 @@ public class Juego extends InterfaceJuego
 	this.nuez.dibujar(entorno);
 	
 
-	
-	if (colision.ColisionZombieBala(zombie, bala)){
-		this.zombie = null;
+		if (colision.ColisionZombieBala(zombie, bala)){
+				this.zombie = null;
 
-	}
+		}
+
 	}
 	
 
