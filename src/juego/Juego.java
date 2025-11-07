@@ -1,5 +1,7 @@
 package juego;
 
+import java.awt.Color;
+
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
@@ -13,9 +15,14 @@ public class Juego extends InterfaceJuego
 	private Bala bala;
 	private Zombie zombie;
 	private DemoColision colision;
+	private Planta1 planta1;
+	private Nuez nuez;
 	// Variables y métodos propios de cada grupo
 	// ...
 	
+	/**
+	 * 
+	 */
 	Juego()
 	{
 		// Inicializa el objeto entorno
@@ -25,7 +32,8 @@ public class Juego extends InterfaceJuego
 		this.bala = new Bala(50, 500, 40 ,40,true);
 		this.colision = new DemoColision();
 		this.regalos = new Regalo [5];
-		
+		this.planta1 = new Planta1(120, 320, 50, 50);
+		this.nuez = new Nuez(200, 320, 50, 50);
 		int filas = 5;
 		int anchocasilla = 80;
 		for (int i = 0; i < filas; i++) {
@@ -37,6 +45,8 @@ public class Juego extends InterfaceJuego
 		this.zombie = new Zombie (850, 500, 40 ,40);
 		// Inicializar lo que haga falta para el juego
 		// ...
+
+
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -68,6 +78,9 @@ public class Juego extends InterfaceJuego
 	this.zombie.mover();
 	this.bala.dibujar(entorno);
 	this.bala.mover();
+	this.planta1.dibujar(entorno);
+	this.nuez.dibujar(entorno);
+	
 
 	
 	if (colision.ColisionZombieBala(zombie, bala)){
