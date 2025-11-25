@@ -84,7 +84,26 @@ public class Juego extends InterfaceJuego
 		        if (bala != null && colision.ColisionZombieBala(zombie[i], bala)) {
 		            zombie[i] = null; // zombie eliminado
 		    }
-		}    
+				
+			
+				if (DemoColision(ColisionZombieRergalo)=true){
+					//terminar juego e imprimir "Perdiste"
+
+
+			}	
+		}			
+		
+
+		public int mouseX(){
+			return x;
+
+		}
+
+		public int mouseY(){
+			return y;
+		}
+
+
 	for(Carta c: cartas) {
 		c.dibujar(entorno);
 	}
