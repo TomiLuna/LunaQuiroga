@@ -11,8 +11,9 @@ public class Carta {
 	private int alto;
 	private String nombre;
 	private String tipo;
-	
-	public Carta(int x, int y, int ancho, int alto, String nombre, String tipo) {
+	private boolean seleccionada;
+
+	public Carta(int x, int y, int ancho, int alto, String nombre, String tipo, boolean seleccionada) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -20,6 +21,7 @@ public class Carta {
 		this.alto = alto;
 		this.nombre = nombre;
 		this.tipo = tipo;
+		this.seleccionada = seleccionada;
 	}
 
 	public int getX() {
@@ -70,6 +72,13 @@ public class Carta {
 		this.tipo = tipo;
 	}
 	
+	public boolean getSeleccionada() {
+		return this.seleccionada;
+	}
+
+	public void  setSeleccionada(boolean seleccionada) {
+		this.seleccionada = seleccionada;
+	}
 	public void dibujar(Entorno entorno) {
         entorno.dibujarRectangulo(x, y, ancho  , alto  , 0, Color.RED
         		);}	

@@ -1,8 +1,10 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Zombie {
 	private int x;
@@ -10,16 +12,21 @@ public class Zombie {
 	private int ancho;
 	private int alto;
 	private int direccion;
+	private boolean seleccionada;
+	private Image imagen;
 	
 	
 
-	public Zombie (int x, int y, int ancho, int alto) {
+	public Zombie (int x, int y, int ancho, int alto, boolean seleccionada, String archivo) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.ancho = ancho;
 		this.alto = alto;
+		this.seleccionada=seleccionada;
 		this.direccion = direccion;
+
+		imagen= Herramientas.cargarImagen(archivo);
 	}
 
 	public int getX() {
@@ -59,6 +66,10 @@ public class Zombie {
 		this.direccion = x--;
 	}
 	
+	public boolean getSeleccionada(){
+		return seleccionada;
+	}
+
 	public void dibujar(Entorno entorno) {
         entorno.dibujarRectangulo(x, y, ancho  , alto  , 0, Color.yellow);}
 
