@@ -14,6 +14,7 @@ public class Zombie {
 	private int direccion;
 	private boolean seleccionada;
 	private Image imagen;
+	private int vida;
 	
 	
 
@@ -25,6 +26,7 @@ public class Zombie {
 		this.alto = alto;
 		this.seleccionada=seleccionada;
 		this.direccion = direccion;
+		this.vida = 2;
 
 		imagen= Herramientas.cargarImagen(archivo);
 	}
@@ -61,6 +63,13 @@ public class Zombie {
 		this.alto = alto;
 	}
 	
+	public  void setVida(int Vida) {
+		this.vida = Vida;
+	}
+	
+	public void Golpe() {
+		this.vida--;
+	}
 	
 	public void mover() {
 		this.direccion = x--;
@@ -71,7 +80,14 @@ public class Zombie {
 	}
 
 	public void dibujar(Entorno entorno) {
-        entorno.dibujarRectangulo(x, y, ancho  , alto  , 0, Color.yellow);}
+		double escalaX = (double) ancho / imagen.getWidth(null);
+        double escalaY = (double) alto / imagen.getHeight(null);
+        double escala;
+        if(escalaX < escalaY)
+        	escala = escalaX;
+        else
+        	escala = escalaY;
+        entorno.dibujarImagen(imagen, x, y, 0, escala);}
 
 }
 

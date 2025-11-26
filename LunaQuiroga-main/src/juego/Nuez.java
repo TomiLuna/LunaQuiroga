@@ -24,9 +24,17 @@ public class Nuez {
         imagen= Herramientas.cargarImagen(archivo);     //cargo archivo de imagenes 
 }
 
-	public void dibujar(Entorno entorno) {
-        entorno.dibujarRectangulo(x, y, ancho  , alto  , 0, Color. pink);
-        }
+    public void dibujar(Entorno entorno) {
+    	// Escalar la imagen según el ancho y alto que definiste para la planta
+        double escalaX = (double) ancho / imagen.getWidth(null);
+        double escalaY = (double) alto / imagen.getHeight(null);
+        double escala;
+        if(escalaX < escalaY)
+        	escala = escalaX;
+        else
+        	escala = escalaY;
+        entorno.dibujarImagen(imagen, x, y, 0, escala);
+    }
     public double getX() { return x; }
     public double getY() { return y; }
     public double getAlto() { return alto;}

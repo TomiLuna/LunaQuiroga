@@ -26,8 +26,8 @@ public class Juego extends InterfaceJuego
 		this.casilla = new Casilla(400,400,80,80);
 		this.tablero = new Tablero(5,10, 80,80);
 		this.bala = new Bala(50, 200, 40 ,40,true);
-		this.planta1 = new Planta1(120, 320, 50, 50, false,"planta1.png");
-		this.nuez = new Nuez(200, 320, 50, 50, false, "nuez.png");
+		this.planta1 = new Planta1(120, 320, 50, 50, false,"imagenes/planta1.png");
+		this.nuez = new Nuez(200, 320, 50, 50, false, "imagenes/nuez.png");
 		this.colision = new DemoColision();
 		this.regalos = new Regalo [5];
 		
@@ -39,16 +39,16 @@ public class Juego extends InterfaceJuego
 			this.regalos[i] = new Regalo(x, y, 40, 40);
 		}
 		//this.bala = new Bala(x, y, 40, 40);
-		this.zombie = new Zombie [3];
+		this.zombie = new Zombie [20];
 		for(int i = 0; i< zombie.length; i++) {
 			int x = 850 + i * 100; // zombie arranca desde fuera de la pantalla
 			int y = 200 + (i % 3) *100; //uno por fila
-			this.zombie[i]= new Zombie (x, y, 40, 40, false, "zombie.gif");
+			this.zombie[i]= new Zombie (x, y, 40, 40, false, "imagenes/zombie.gif");
 		}
 		this.cartas = new Carta[] {
-				new Carta(600, 50, 60, 80, "zombie",null,false),
-				new Carta(100, 50, 60 ,80, "planta", null,false),
-				new Carta(250, 50, 60 ,80, "nuez", null,false),
+				new Carta(600, 50, 60, 80, "zombie",null,false, "imagenes/zombie.gif"),
+				new Carta(100, 50, 100 ,100, "planta", null,false, "imagenes/planta1.png"),
+				new Carta(250, 50, 100 ,100, "nuez", null,false,"imagenes/nuez.png"),
 		};
 		// Inicializar lo que haga falta para el juego
 		// ...
@@ -76,6 +76,10 @@ public class Juego extends InterfaceJuego
 				regalos[i].dibujar(entorno);
 			}
 		}
+		if (entorno.tiempo() % 3000 < 20) {  
+            spawnearZombie();
+		}
+		
 		for (int i = 0; i < zombie.length; i++) {
 		    if (zombie[i] != null) {       // primero verificás que exista
 		        zombie[i].dibujar(entorno); // lo dibujás
@@ -102,12 +106,26 @@ public class Juego extends InterfaceJuego
 	this.bala.dibujar(entorno);
 	this.bala.mover();
 	this.planta1.dibujar(entorno);
-	this.nuez.dibujar(entorno);
+	this.nuez.dibujar(entorno);}
+	
+	public void spawnearZombie() {
+	    int fila = (int)(Math.random() * 5); // 5 filas
+	    int x = 850; // fuera de pantalla
+	    int y = 200 + fila * 80 + 40; // MISMA FORMULA QUE REGALOS
+	                                   // 200 = offset implícito
+	                                   // 80 = alto casilla
+	                                   // 40 = centro
+	    for (int i = 0; i < zombie.length; i++) {
+	        if (zombie[i] == null) {
+	            zombie[i] = new Zombie(x, y, 40, 40, false, "imagenes/zombie.gif");
+	            
+	        }
+	    }
 
 	
 	
 		}
-	}
+	
 	
 	
 
