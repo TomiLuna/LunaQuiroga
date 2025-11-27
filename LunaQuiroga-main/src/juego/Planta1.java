@@ -42,5 +42,9 @@ public class Planta1 {
 	    public double getAncho() {return ancho; }
 	    public double getAlto() {return alto; }
 		public boolean getSeleccionada() {return seleccionada;}
+		
+		public void setSeleccionada(boolean seleccionada) {
+	        this.seleccionada = seleccionada;
+	    }
 
 }

@@ -5,11 +5,11 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Bala {
-	int x;
-	int y;
-	int ancho;
-	int alto;
-	boolean direccion;
+	private double x;
+	private double y;
+	private int ancho;
+	private int alto;
+	private boolean direccion;
 	
 	
 	public Bala(int x, int y, int ancho, int alto, boolean direccion) {
@@ -23,16 +23,16 @@ public class Bala {
 	
 	public void mover() {
 		if ( this.direccion)
-			x++;
+			this.x +=3;
 		else {
-			x--;
+			this.x-=3;
 		}
 	}
 	
 	public void dibujar(Entorno entorno) {
         entorno.dibujarRectangulo(x, y, ancho  , alto  , 0, Color.blue);}
 
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
@@ -40,7 +40,7 @@ public class Bala {
 		this.x = x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 

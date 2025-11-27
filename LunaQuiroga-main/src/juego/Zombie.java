@@ -63,6 +63,9 @@ public class Zombie {
 		this.alto = alto;
 	}
 	
+	public int getVida() { 
+		return vida; }
+	
 	public  void setVida(int Vida) {
 		this.vida = Vida;
 	}

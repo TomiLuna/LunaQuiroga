@@ -14,9 +14,12 @@ public class Carta {
 	private String nombre;
 	private String tipo;
 	private boolean seleccionada;
-	private Image imagen; 
+	private Image imagen;
+	private int tiempoUltimoUso;   // tiempo del juego en ms cuando se usó
+	private int tiempoRecarga;     // ms que tarda en recargar
+	private boolean disponible;
 
-	public Carta(int x, int y, int ancho, int alto, String nombre, String tipo, boolean seleccionada,String archivo) {
+	public Carta(int x, int y, int ancho, int alto, String nombre, String tipo, boolean seleccionada,String archivo, int tiempoRecarga) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -26,6 +29,9 @@ public class Carta {
 		this.tipo = tipo;
 		this.seleccionada = seleccionada;
 		this.imagen = Herramientas.cargarImagen(archivo);
+		this.tiempoRecarga = tiempoRecarga;
+	    this.tiempoUltimoUso = 0;
+	    this.disponible = true;
 	}
 
 	public int getX() {
@@ -83,6 +89,22 @@ public class Carta {
 	public void  setSeleccionada(boolean seleccionada) {
 		this.seleccionada = seleccionada;
 	}
+	
+	 public boolean estaDisponible(int tiempoActualJuego) {
+	        if (!disponible) {
+	            if (tiempoActualJuego - tiempoUltimoUso >= tiempoRecarga) {
+	                disponible = true;
+	            }
+	        }
+	        return disponible;
+	    }
+	 
+	 public void usarCarta(int tiempoActualJuego) {
+	        disponible = false;
+	        tiempoUltimoUso = tiempoActualJuego;
+	    }
+	 
+	 
 	public void dibujar(Entorno entorno) {
 		double escalaX = (double) ancho / imagen.getWidth(null);
         double escalaY = (double) alto / imagen.getHeight(null);
@@ -92,6 +114,12 @@ public class Carta {
         else
         	escala = escalaY;
         entorno.dibujarImagen(imagen, x, y, 0, escala);
+        if (!estaDisponible(entorno.tiempo())) {
+            int tiempoPasado = entorno.tiempo() - tiempoUltimoUso;
+            if (tiempoPasado > tiempoRecarga) tiempoPasado = tiempoRecarga;  // limitar a 100%
+            int barraAncho = (int)((1 - (double)tiempoPasado / tiempoRecarga) * ancho);
+            entorno.dibujarRectangulo(x - ancho/2 + (ancho - barraAncho)/2, y + alto/2 + 5, barraAncho, 5, 0, Color.RED);
+        }
         		;}	
 	
 }

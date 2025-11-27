@@ -13,6 +13,7 @@ public class Nuez {
     private int alto;
     private Image imagen;       //como cargar imagenes 
     private boolean seleccionada;
+    private int vidas =2 ;
 
     public Nuez(double x, double y, int ancho, int alto,boolean seleccionada, String archivo) {
         this. x = x;
@@ -35,6 +36,15 @@ public class Nuez {
         	escala = escalaY;
         entorno.dibujarImagen(imagen, x, y, 0, escala);
     }
+    
+    public void recibirDaño() {
+        vidas--;
+    }
+    
+    public boolean estaMuerta() {
+        return vidas <= 0;
+    }
+    
     public double getX() { return x; }
     public double getY() { return y; }
     public double getAlto() { return alto;}
